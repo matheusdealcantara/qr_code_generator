@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
+
 {% block content %}
     <form action="/" method="post">
-        <input type="text" autocomplete="off" autofocus name="url">
+        <input type="text" autocomplete="off" autofocus name="username">
+        <input type="password" name="password">
         <button>Generate QR Code</button>
     </form>
 
     {% if qr_code %}
         <img src="{{ qr_code }}" alt="QR Code">
     {% endif %}
-{% endblock %}
+{% endblock %}	
