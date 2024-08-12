@@ -1,29 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Generator</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <header>
-        <h1>QR Code Generator</h1>
-    </header>
-    
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-    
-    <footer>
-        <div class="container">
-            <p>By: Matheus de Alcântara</p>
-            <nav>
-                <li><a href="#">Github</a></li>
-                <li><a href="#">Linkedin</a></li>
-                <li><a href="#">Email</a></li>
-            </nav>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-title">
+                <a href="#">QR Code</a>
+            </div>
+            {% if session["user_id"] %}
+            <div class="navbar-links" id="navbarLinks">
+                <a href="#generate">Generate</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="navbar-toggle" id="navbarToggle">
+                <span class="navbar-toggle-icon"></span>
+                <span class="navbar-toggle-icon"></span>
+                <span class="navbar-toggle-icon"></span>
+            </button>
+            {% else %}
+            <div class="navbar-links" id="navbarLinks">
+                <a href="login">Login</a>
+                <a href="register">Register</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>    
+            <button class="navbar-toggle" id="navbarToggle">
+                <span class="navbar-toggle-icon"></span>
+                <span class="navbar-toggle-icon"></span>
+                <span class="navbar-toggle-icon"></span>
+            </button>
+            {% endif %}
         </div>
-    </footer>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script>
+        document.getElementById('navbarToggle').addEventListener('click', function() {
+            var links = document.getElementById('navbarLinks');
+            links.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

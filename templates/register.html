@@ -1,9 +1,26 @@
 {% extends "layout.html" %}
+
 {% block content %}
-    <form action="/register" method="post">
-        <input type="text" autocomplete="off" autofocus name="username">
-        <input type="password" name="password">
-        <input type="password" name="confirmation">
-        <button>Register</button>
-    </form>
-{% endblock %}
+    <div class="form-container">
+        <form id="authForm" action="/login" method="post">
+            <h2 id="formTitle">Register</h2>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group" id="confirmPasswordGroup">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+            </div>
+
+            <button type="submit" id="submitButton">Register</button>
+        </form>
+    </div>
+{% endblock %}	
