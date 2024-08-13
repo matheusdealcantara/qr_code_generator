@@ -11,12 +11,33 @@ body {
     padding-bottom: 60px;
 }
 
+.history {
+    width: 200px;
+    height: 200px;
+}
+
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
+
+.about {
+    width: 50%;
+    text-align: center;
+}
+
+.about h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}   
+
+.about p {
+    font-size: 18px;
+    color: #333;
+}   
 
 .navbar {
     background-color: #333;

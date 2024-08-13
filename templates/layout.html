@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-title">
@@ -16,6 +15,8 @@
             {% if session["user_id"] %}
             <div class="navbar-links" id="navbarLinks">
                 <a href="/">Generate</a>
+                <a href="history">History</a>
+                <a href="logout">Logout</a>
                 <a href="about">About</a>
             </div>
             <button class="navbar-toggle" id="navbarToggle">

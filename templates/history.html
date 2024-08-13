@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="success">
+        <h2>History</h2>
+        <table>
+            <tr>
+                <th>Link</th>
+                <th>QR Code</th>
+            </tr>
+            {% for link in links %}
+                <tr>
+                    <td><a href="{{ link.url }}" target="_blank">{{ link.url }}</a></td>
+                    <td><img src="{{ link.qr_code }}" alt="QR Code" class="history"></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
