@@ -3,7 +3,7 @@ from io import BytesIO
 
 import qrcode
 from cs50 import SQL
-from flask import Flask, render_template, request, send_file, session
+from flask import Flask, redirect, render_template, request, send_file, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from flask_session import Session
@@ -61,7 +61,7 @@ def generate():
     data = request.form.get('data')
 
     qr = qrcode.QRCode(
-        version=1,
+       version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
         box_size=10,
         border=4,
@@ -72,7 +72,7 @@ def generate():
     img = qr.make_image(fill_color="black", back_color="white")
     img_io = BytesIO()
     img.save(img_io, 'PNG')
-    img_io.seek(0)
+    img_io.seek(0) 
 
     return send_file(img_io, mimetype='image/png')
 
@@ -80,7 +80,7 @@ def generate():
 @app.route('/history')
 @login_required
 def history():
-    rows = db.execute('SELECT * FROM qr WHERE user_id = :user_id', user_id=session['user_id'])
+    rows = db.execute('SELECT * FROM qr WHERE user_id = ?', session['user_id'])
     return render_template('history.html', rows=rows)
 
 
@@ -93,15 +93,21 @@ def register():
 
         if not username:
             return apology('You must provide a username', 403)
+        
         if not password:
             return apology('You must provide a password', 403)
+        
         if password != confirmation:
             return apology('Passwords do not match', 403)
 
         hash = generate_password_hash(password)
-        db.execute('INSERT INTO users (username, hash) VALUES (:username, :hash)', username=username, hash=hash)
 
-        return render_template('login.html')
+        try:
+            db.execute('INSERT INTO users (username, hash) VALUES (?, ?)', username, hash)
+        except ValueError:
+            return apology('Username already exists', 403)
+
+        return redirect('/')
     else:
         return render_template('register.html')
     
@@ -117,7 +123,7 @@ def login():
         if not password:
             return apology('You must provide a password', 403)
 
-        rows = db.execute('SELECT * FROM users WHERE username = :username', username=username)
+        rows = db.execute('SELECT * FROM users WHERE username = ?', username)
 
         if len(rows) != 1 or not check_password_hash(rows[0]['hash'], password):
             return apology('Invalid username and/or password', 403)

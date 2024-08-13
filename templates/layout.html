@@ -11,13 +11,12 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-title">
-                <a href="#">QR Code</a>
+                <a href="/">QR Code</a>
             </div>
             {% if session["user_id"] %}
             <div class="navbar-links" id="navbarLinks">
-                <a href="#generate">Generate</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+                <a href="/">Generate</a>
+                <a href="about">About</a>
             </div>
             <button class="navbar-toggle" id="navbarToggle">
                 <span class="navbar-toggle-icon"></span>
@@ -28,8 +27,7 @@
             <div class="navbar-links" id="navbarLinks">
                 <a href="login">Login</a>
                 <a href="register">Register</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+                <a href="about">About</a>
             </div>    
             <button class="navbar-toggle" id="navbarToggle">
                 <span class="navbar-toggle-icon"></span>
@@ -43,6 +41,21 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-name">
+                <p>&copy; 2024 Your Name</p>
+            </div>
+            <div class="footer-links">
+                <a href="mailto:youremail@example.com">Email</a>
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+                <a href="https://twitter.com/yourusername" target="_blank">Twitter</a>
+            </div>
+        </div>
+    </footer>
+    
 
     <script>
         document.getElementById('navbarToggle').addEventListener('click', function() {
