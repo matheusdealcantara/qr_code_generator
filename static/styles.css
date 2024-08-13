@@ -11,10 +11,21 @@ body {
     padding-bottom: 60px;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 .navbar {
     background-color: #333;
     color: white;
     padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar-container {
