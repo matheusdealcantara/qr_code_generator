@@ -3,7 +3,7 @@ from io import BytesIO
 
 import qrcode
 from cs50 import SQL
-from flask import Flask, redirect, render_template, request, send_file, session
+from flask import Flask, redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from flask_session import Session
