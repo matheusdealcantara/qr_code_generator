@@ -53,7 +53,7 @@ def index():
         qr_code = img_io.read()
 
         user_img = db.execute("SELECT COUNT(id) FROM links WHERE user_id = ?", session['user_id'])    
-        photo_path = os.path.join(IMG_DIR, f'{session["user_id"]}_{user_img[0]['COUNT(id)'] + 1}.png')
+        photo_path = os.path.join(IMG_DIR, f'{session["user_id"]}_{user_img[0]["COUNT(id)"] + 1}.png')
         writeTofile(qr_code, photo_path)
 
         flag = db.execute("SELECT * FROM links WHERE user_id = ? AND url = ?", session['user_id'], data)
